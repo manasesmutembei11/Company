@@ -7,6 +7,7 @@ using Company.Core.Models.Blog;
 using Company.Core.Models.Commerce;
 using Company.Core.Models.UserInfo;
 using Microsoft.EntityFrameworkCore;
+using Company.Infrastructure.Configuration;
 
 namespace Company.Infrastructure.Data
 {
@@ -15,6 +16,14 @@ namespace Company.Infrastructure.Data
         public CompanyContext(DbContextOptions options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ArticleConfiguration());
+            
+        }
+
+
         public DbSet<Article>? Articles { get; set; }
         public DbSet<Author>? Authors { get; set; }
         public DbSet<Category>? Categories { get; set; }
