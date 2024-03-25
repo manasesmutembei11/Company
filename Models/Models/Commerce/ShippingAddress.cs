@@ -10,7 +10,7 @@ namespace Company.Core.Models.Commerce
 {
     public class ShippingAddress
     {
-        public Guid AddressId { get; set; }
+        public Guid ShippingAddressId { get; set; }
         public string? Country { get; set; }
         public string? Street {  get; set; }
         public string? City { get; set; }
@@ -18,7 +18,7 @@ namespace Company.Core.Models.Commerce
 
         public string? PostalCode { get; set; }
 
-        public User? User { get; set; }
+       
         
     }
 }

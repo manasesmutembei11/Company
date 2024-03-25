@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Company.Core.Models.Blog;
 using Company.Core.Models.Commerce;
 using Company.Core.Models.UserInfo;
+using Microsoft.EntityFrameworkCore;
 
 namespace Company.Infrastructure.Data
 {

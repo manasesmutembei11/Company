@@ -8,7 +8,7 @@ namespace Company.Core.Models.Blog
 {
     public class Category
     {
-        public Guid BlogCategoryId { get; set; }
+        public Guid CategoryId { get; set; }
 
         public int CategoryCode { get; set; }
         public string? Name { get; set; }
