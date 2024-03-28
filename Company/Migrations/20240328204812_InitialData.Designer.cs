@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Company.Migrations
 {
     [DbContext(typeof(CompanyContext))]
-    [Migration("20240328202617_InitialData")]
+    [Migration("20240328204812_InitialData")]
     partial class InitialData
     {
         /// <inheritdoc />
@@ -35,7 +35,7 @@ namespace Company.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("AuthorId")
+                    b.Property<Guid?>("AuthorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("CategoryId")
@@ -63,18 +63,16 @@ namespace Company.Migrations
                         {
                             ArticleId = new Guid("81abbca8-664d-4b20-b5de-024705497d4a"),
                             ArticleImageUrl = "583 Wall Dr. Gwynn Oak, MD 21207",
-                            AuthorId = new Guid("82abbca8-664d-4b20-b5de-024705497d4a"),
                             Content = "",
-                            PublicationDate = new DateTime(2024, 3, 28, 23, 26, 17, 154, DateTimeKind.Local).AddTicks(8833),
+                            PublicationDate = new DateTime(2024, 3, 28, 23, 48, 12, 274, DateTimeKind.Local).AddTicks(395),
                             Title = "Recipe 1"
                         },
                         new
                         {
                             ArticleId = new Guid("83abbca8-664d-4b20-b5de-024705497d4a"),
                             ArticleImageUrl = "583 Wall Dr. Gwynn Oak, MD 21207",
-                            AuthorId = new Guid("84abbca8-664d-4b20-b5de-024705497d4a"),
                             Content = "",
-                            PublicationDate = new DateTime(2024, 3, 28, 23, 26, 17, 154, DateTimeKind.Local).AddTicks(8848),
+                            PublicationDate = new DateTime(2024, 3, 28, 23, 48, 12, 274, DateTimeKind.Local).AddTicks(404),
                             Title = "Recipe 2"
                         });
                 });
@@ -131,7 +129,7 @@ namespace Company.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ArticleId")
+                    b.Property<Guid?>("ArticleId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CommentContent")
@@ -418,17 +416,13 @@ namespace Company.Migrations
 
             modelBuilder.Entity("Company.Core.Models.Blog.Article", b =>
                 {
-                    b.HasOne("Company.Core.Models.Blog.Author", "Author")
+                    b.HasOne("Company.Core.Models.Blog.Author", null)
                         .WithMany("Articles")
-                        .HasForeignKey("AuthorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AuthorId");
 
                     b.HasOne("Company.Core.Models.Blog.Category", "Category")
                         .WithMany("Article")
                         .HasForeignKey("CategoryId");
-
-                    b.Navigation("Author");
 
                     b.Navigation("Category");
                 });
@@ -437,9 +431,7 @@ namespace Company.Migrations
                 {
                     b.HasOne("Company.Core.Models.Blog.Article", null)
                         .WithMany("Comments")
-                        .HasForeignKey("ArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ArticleId");
                 });
 
             modelBuilder.Entity("Company.Core.Models.Commerce.Order", b =>

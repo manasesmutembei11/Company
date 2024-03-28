@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Company.Core.Models.Blog;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Company.Core.Contracts
 {
     public interface IArticleRepository
     {
+        IEnumerable<Article> GetAllArticles(bool trackChanges);
     }
 }

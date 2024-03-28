@@ -15,6 +15,9 @@ namespace Company.Infrastructure.Repositories
         : base(companyContext)
         {
         }
+
+        public IEnumerable<Article> GetAllArticles(bool trackChanges) => FindAll(trackChanges).OrderBy(c => c.Title).ToList();
+
     }
 
 }

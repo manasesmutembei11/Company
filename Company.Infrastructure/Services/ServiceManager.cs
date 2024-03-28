@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 
 namespace Company.Infrastructure.Services
 {
@@ -13,9 +14,9 @@ namespace Company.Infrastructure.Services
         private readonly Lazy<IArticleService> _articleService;
         private readonly Lazy<IProductService> _productService;
 
-        public ServiceManager (IRepositoryManager repositoryManager) {
-            _articleService = new Lazy<IArticleService>(() => new ArticleService(repositoryManager));
-            _productService = new Lazy<IProductService>(() => new ProductService(repositoryManager));
+        public ServiceManager (IRepositoryManager repositoryManager, IMapper mapper) {
+            _articleService = new Lazy<IArticleService>(() => new ArticleService(repositoryManager, mapper));
+            _productService = new Lazy<IProductService>(() => new ProductService(repositoryManager, mapper));
         }
 
         public IArticleService ArticleService => _articleService.Value;

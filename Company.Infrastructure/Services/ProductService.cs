@@ -1,4 +1,5 @@
-﻿using Company.Core.Contracts;
+﻿using AutoMapper;
+using Company.Core.Contracts;
 using Company.Core.Contracts.IService;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,10 @@ namespace Company.Infrastructure.Services
     internal sealed class ProductService : IProductService
     {
         private readonly IRepositoryManager _repositoryManager;
-        public ProductService(IRepositoryManager repositoryManager) {
+        private readonly IMapper _mapper;
+        public ProductService(IRepositoryManager repositoryManager, IMapper mapper) {
             _repositoryManager = repositoryManager;
+            _mapper = mapper;
         }
     }
 }

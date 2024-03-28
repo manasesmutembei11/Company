@@ -10,8 +10,6 @@ namespace Company.Core.Models.Blog
     {
         public Guid CommentId { get; set; }
 
-        public Guid ArticleId { get; set; }
-
         public string? CommenterName { get; set; }
 
         public string? CommenterEmail {get; set; }
