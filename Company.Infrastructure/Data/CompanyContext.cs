@@ -20,6 +20,7 @@ namespace Company.Infrastructure.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ArticleConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
             
         }
 
