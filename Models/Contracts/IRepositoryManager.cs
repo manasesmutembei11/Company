@@ -10,6 +10,8 @@ namespace Company.Core.Contracts
     {
         IArticleRepository Article { get; }
         IProductRepository Product { get; }
+
+        IAuthorRepository Author { get; }
         void Save();
     }
 

@@ -19,7 +19,7 @@ namespace Company.Core.Models.Blog
 
         public string? ProfilePictureUrl { get; set; }
 
-        public ICollection<Article>? Articles { get; set;}
+        public IEnumerable<Article>? Articles { get; set;}
 
     }
 }

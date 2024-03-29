@@ -19,7 +19,7 @@ namespace Company.ServiceExtension
             services.AddScoped<IServiceManager, ServiceManager>();
 
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) => 
-            services.AddSqlServer<CompanyContext>((configuration.GetConnectionString("sqlConnection")));
+            services.AddSqlServer<CompanyContext>((configuration.GetConnectionString("CompanyContext")));
 
         public static void ConfigureLoggerService(this IServiceCollection services) =>
             services.AddSingleton<ILoggerManager, LoggerManager>();

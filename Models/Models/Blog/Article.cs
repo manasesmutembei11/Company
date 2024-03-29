@@ -11,7 +11,9 @@ namespace Company.Core.Models.Blog
 {
     public class Article
     {
-        public Guid ArticleId { get; set; }  
+        public Guid ArticleId { get; set; } 
+        
+        public Guid AuthorId { get; set; }
 
         public string? ArticleImageUrl { get; set; }
         public string? Title { get; set; }
@@ -21,6 +23,8 @@ namespace Company.Core.Models.Blog
 
         public Category? Category { get; set; }
 
-        public ICollection<Comment>? Comments { get; set; }
+        public Author? Author { get; set; }
+
+        public IEnumerable<Comment>? Comments { get; set; }
     }
 }

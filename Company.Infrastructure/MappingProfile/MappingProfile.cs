@@ -14,6 +14,8 @@ namespace Company.Infrastructure.MappingProfile
         public MappingProfile()
         {
             CreateMap<Article, ArticleDto>();
+
+            CreateMap<Author, AuthorDto>();
         }
     }
 

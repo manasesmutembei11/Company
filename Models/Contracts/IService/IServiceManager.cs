@@ -10,5 +10,7 @@ namespace Company.Core.Contracts.IService
     {
         public IArticleService ArticleService { get; }
         public IProductService ProductService { get; }
+
+        public IAuthorService AuthorService { get; }
     }
 }

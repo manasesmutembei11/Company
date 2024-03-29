@@ -12,12 +12,15 @@ namespace Company.Core.DTOs
     {
         public Guid ArticleId { get; init; }
 
+        public Guid AuthorId { get; init; }
+
         public string? ArticleImageUrl { get; init; }
         public string? Title { get; init; }
         public string? Content { get; init; }
 
         public DateTime PublicationDate { get; init; }
 
+        public Author? Author { get; init; }
         public Category? Category { get; init; }
 
         public ICollection<Comment>? Comments { get; init; }
