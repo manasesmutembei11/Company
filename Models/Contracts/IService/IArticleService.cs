@@ -11,5 +11,7 @@ namespace Company.Core.Contracts.IService
     {
         IEnumerable<ArticleDto> GetAllArticles(bool trackChanges);
 
+        ArticleDto GetArticle(Guid ArticleId, bool trackChanges);
+
     }
 }

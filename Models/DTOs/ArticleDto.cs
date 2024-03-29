@@ -9,11 +9,17 @@ using Company.Core.Models.Blog;
 namespace Company.Core.DTOs
 {
     public record ArticleDto
-    (
-        Guid ArticleId,
-        string? ArticleImageUrl,
-        string? Title,
-        string? Content,
-        DateTime PublicationDate
-    );
+    {
+        public Guid ArticleId { get; init; }
+
+        public string? ArticleImageUrl { get; init; }
+        public string? Title { get; init; }
+        public string? Content { get; init; }
+
+        public DateTime PublicationDate { get; init; }
+
+        public Category? Category { get; init; }
+
+        public ICollection<Comment>? Comments { get; init; }
+    }
 }

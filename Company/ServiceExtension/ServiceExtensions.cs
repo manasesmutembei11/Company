@@ -4,6 +4,8 @@ using Company.Infrastructure.Repositories;
 using Company.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Company.Infrastructure.Data;
+using Company.Core.Interfaces.ILogger;
+using Company.Infrastructure.LoggerManager;
 
 namespace Company.ServiceExtension
 {
@@ -19,6 +21,8 @@ namespace Company.ServiceExtension
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) => 
             services.AddSqlServer<CompanyContext>((configuration.GetConnectionString("sqlConnection")));
 
+        public static void ConfigureLoggerService(this IServiceCollection services) =>
+            services.AddSingleton<ILoggerManager, LoggerManager>();
 
 
     }

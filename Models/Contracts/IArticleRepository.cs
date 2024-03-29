@@ -10,5 +10,6 @@ namespace Company.Core.Contracts
     public interface IArticleRepository
     {
         IEnumerable<Article> GetAllArticles(bool trackChanges);
+        Article GetArticle(Guid ArticleId, bool trackChanges);
     }
 }

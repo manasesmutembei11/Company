@@ -18,6 +18,9 @@ namespace Company.Infrastructure.Repositories
 
         public IEnumerable<Article> GetAllArticles(bool trackChanges) => FindAll(trackChanges).OrderBy(c => c.Title).ToList();
 
+
+        public Article GetArticle(Guid ArticleId, bool trackChanges) => 
+            FindByCondition(c => c.ArticleId.Equals(ArticleId), trackChanges).SingleOrDefault();
     }
 
 }

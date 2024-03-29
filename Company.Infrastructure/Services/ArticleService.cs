@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using Company.Core.Models.Blog;
 using Company.Core.DTOs;
 using AutoMapper;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using Company.Core.Exceptions;
 
 namespace Company.Infrastructure.Services
 {
@@ -23,11 +25,20 @@ namespace Company.Infrastructure.Services
         public IEnumerable<ArticleDto> GetAllArticles(bool trackChanges)
         {
 
-                var articles =_repositoryManager.Article.GetAllArticles(trackChanges);
+            var articles =_repositoryManager.Article.GetAllArticles(trackChanges);
             var articlesDto = _mapper.Map<IEnumerable<ArticleDto>>(articles);
 
             return articlesDto;
             
+        }
+
+        public ArticleDto GetArticle(Guid ArticleId, bool trackChanges) {
+            var article = _repositoryManager.Article.GetArticle(ArticleId, trackChanges);
+            if (article is null)
+                throw new ArticleNotFoundException(ArticleId);
+            var articleDto =_mapper.Map<ArticleDto>(article);
+
+            return articleDto;
         }
 
     }

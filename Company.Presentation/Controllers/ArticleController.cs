@@ -1,4 +1,5 @@
 ﻿using Company.Core.Contracts.IService;
+using Company.Core.Models.Blog;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Company.Presentation.Controllers
 {
-    [Route("api/companies")]
+    [Route("api/articles")]
     [ApiController]
     public class ArticleController : ControllerBase
     {
@@ -22,15 +23,17 @@ namespace Company.Presentation.Controllers
         [HttpGet]
         public IActionResult GetAllArticles()
         {
-            try
-            {
-                var articles =  _serviceManager.ArticleService.GetAllArticles(trackChanges: false);
+            //throw new Exception("Exception");
+
+            var articles =  _serviceManager.ArticleService.GetAllArticles(trackChanges: false);
                 return Ok(articles);
-            }
-            catch
-            {
-                return StatusCode(500, "Internal server error");
-            }
+            
+        }
+
+        [HttpGet("{ArticleId:guid}")]
+        public IActionResult GetArticle(Guid ArticleId) {
+            var article = _serviceManager.ArticleService.GetArticle(ArticleId, trackChanges: false);
+            return Ok(article);
         }
 
     }
