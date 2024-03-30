@@ -16,6 +16,10 @@ namespace Company.Infrastructure.MappingProfile
             CreateMap<Article, ArticleDto>();
 
             CreateMap<Author, AuthorDto>();
+
+            CreateMap<ArticleForCreationDto, Article>();
+
+            CreateMap<AuthorForCreationDto, Author>();
         }
     }
 

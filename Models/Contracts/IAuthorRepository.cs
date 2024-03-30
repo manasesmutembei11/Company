@@ -11,7 +11,9 @@ namespace Company.Core.Contracts
     {
        IEnumerable<Article> AuthorArticles(Guid AuthorId, bool trackChanges);
 
-       Article GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges);
+        // Article GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges);
+
+        void CreateAuthor(Author author);
 
 
     }

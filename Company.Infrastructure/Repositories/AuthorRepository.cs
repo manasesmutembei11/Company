@@ -19,9 +19,10 @@ namespace Company.Infrastructure.Repositories
          (IEnumerable<Article>)FindByCondition(e => e.AuthorId.Equals(AuthorId), trackChanges)
          .OrderBy(e => e.Email).ToList();
 
-        public Article GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges) =>
-            FindByCondition(e => e.AuthorId.Equals(AuthorId) && e.ArticleId.Equals(ArticleId), trackChanges).SingleOrDefault();
+        //   public Article GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges) =>
+        //    FindByCondition(e => e.AuthorId.Equals(AuthorId) && e.ArticleId.Equals(ArticleId), trackChanges).SingleOrDefault();
 
+        public void CreateAuthor(Author author) => Create(author);
 
 
     }

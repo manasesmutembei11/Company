@@ -21,6 +21,8 @@ namespace Company.Infrastructure.Repositories
 
         public Article GetArticle(Guid ArticleId, bool trackChanges) => 
             FindByCondition(c => c.ArticleId.Equals(ArticleId), trackChanges).SingleOrDefault();
+
+        public void CreateArticle(Article article) => Create(article);
     }
 
 }

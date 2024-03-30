@@ -13,7 +13,7 @@ namespace Company.Core.Models.Blog
     {
         public Guid ArticleId { get; set; } 
         
-        public Guid AuthorId { get; set; }
+        public Guid AuthorId { get; set; } 
 
         public string? ArticleImageUrl { get; set; }
         public string? Title { get; set; }

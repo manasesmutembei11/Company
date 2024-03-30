@@ -3,6 +3,7 @@ using Company.Core.Contracts;
 using Company.Core.Contracts.IService;
 using Company.Core.DTOs;
 using Company.Core.Exceptions;
+using Company.Core.Models.Blog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -33,20 +34,31 @@ namespace Company.Infrastructure.Services
             return articlesDto;
         }
 
-        public ArticleDto GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges)
+        /*   public ArticleDto GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges)
+           {
+               var author = _repositoryManager.Author.GetArticle(AuthorId, ArticleId, trackChanges);
+               if (author is null)
+                   throw new AuthorNotFoundException(AuthorId);
+               var article = _repositoryManager.Author.GetArticle(AuthorId, ArticleId, trackChanges);
+               if (article is null)
+                   throw new ArticleNotFoundException(ArticleId);
+               var mappedArticle = _mapper.Map<ArticleDto>(article);
+               return mappedArticle;
+           } */
+
+        public AuthorDto CreateAuthor(AuthorForCreationDto author)
         {
-            var author = _repositoryManager.Author.GetArticle(AuthorId, ArticleId, trackChanges);
-            if (author is null)
-                throw new AuthorNotFoundException(AuthorId);
-            var article = _repositoryManager.Author.GetArticle(AuthorId, ArticleId, trackChanges);
-            if (article is null)
-                throw new ArticleNotFoundException(ArticleId);
-            var mappedArticle = _mapper.Map<ArticleDto>(article);
-            return mappedArticle;
+            var authorEntity = _mapper.Map<Author>(author);
+
+            _repositoryManager.Author.CreateAuthor(authorEntity);
+            _repositoryManager.Save();
+
+            var authorToReturn = _mapper.Map<AuthorDto>(authorEntity);
+
+            return authorToReturn;
+
+
         }
-
-
     }
-
 
 }

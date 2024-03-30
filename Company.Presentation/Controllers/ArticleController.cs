@@ -1,4 +1,5 @@
 ﻿using Company.Core.Contracts.IService;
+using Company.Core.DTOs;
 using Company.Core.Models.Blog;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -35,6 +36,16 @@ namespace Company.Presentation.Controllers
             var article = _serviceManager.ArticleService.GetArticle(ArticleId, trackChanges: false);
             return Ok(article);
         }
+
+        [HttpPost]
+        public IActionResult CreateArticle([FromBody] ArticleForCreationDto article)
+        {
+            if (article is null)
+                return BadRequest("ArticleForCreationDto object is null");
+            var createdArticle = _serviceManager.ArticleService.CreateArticle(article);
+            return CreatedAtRoute("ArticleById", createdArticle);
+        }
+
 
 
     }

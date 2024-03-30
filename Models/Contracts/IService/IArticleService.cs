@@ -13,5 +13,7 @@ namespace Company.Core.Contracts.IService
 
         ArticleDto GetArticle(Guid ArticleId, bool trackChanges);
 
+        ArticleDto CreateArticle(ArticleForCreationDto article);
+
     }
 }

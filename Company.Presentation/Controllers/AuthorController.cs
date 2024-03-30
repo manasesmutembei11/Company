@@ -1,4 +1,5 @@
 ﻿using Company.Core.Contracts.IService;
+using Company.Core.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Company.Presentation.Controllers
 {
-    [Route("api/author/{AuthorId}/articles")]
+    [Route("api/author")]
     [ApiController]
     public class AuthorController : ControllerBase
     {
@@ -25,12 +26,23 @@ namespace Company.Presentation.Controllers
             return Ok(articles);
         }
 
-        [HttpGet("{id:guid}")]
-        public IActionResult GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges)
+        [HttpPost]
+        public IActionResult CreateAuthor([FromBody] AuthorForCreationDto author)
+        {
+            if (author is null)
+                return BadRequest("ArticleForCreationDto object is null");
+            var createdAuthor = _serviceManager.AuthorService.CreateAuthor(author);
+            return Ok(createdAuthor);
+        }
+
+        /* 
+        [HttpGet("{id:guid}", Name = "AuthorById")]
+
+       public IActionResult GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges)
         {
             var Article = _serviceManager.AuthorService.GetArticle(AuthorId, ArticleId, trackChanges: trackChanges);
             return Ok(Article);
-        }
+        } */
     }
 
 }

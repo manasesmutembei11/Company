@@ -41,5 +41,18 @@ namespace Company.Infrastructure.Services
             return articleDto;
         }
 
+        public ArticleDto CreateArticle(ArticleForCreationDto article) {
+            var articleEntity = _mapper.Map<Article>(article);
+
+            _repositoryManager.Article.CreateArticle(articleEntity);
+            _repositoryManager.Save();
+
+            var articleToReturn = _mapper.Map<ArticleDto>(articleEntity);
+
+            return articleToReturn;
+
+
+        }
+
     }
 }
