@@ -15,6 +15,9 @@ namespace Company.Core.Contracts
 
         void CreateAuthor(Author author);
 
+        Author GetAuthor(Guid AuthorId, bool trackChanges);
+        void DeleteAuthor(Author author);
+
 
     }
 }

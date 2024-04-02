@@ -24,6 +24,10 @@ namespace Company.Infrastructure.Repositories
 
         public void CreateAuthor(Author author) => Create(author);
 
+        public Author GetAuthor(Guid AuthorId, bool trackChanges) =>
+         FindByCondition(c => c.AuthorId.Equals(AuthorId), trackChanges).SingleOrDefault();
+        public void DeleteAuthor(Author author) => Delete(author);
+
 
     }
 }

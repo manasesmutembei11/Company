@@ -14,5 +14,12 @@ namespace Company.Core.Contracts.IService
 
         //  ArticleDto GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges);
         AuthorDto CreateAuthor(AuthorForCreationDto author);
+
+        AuthorDto GetAuthor(Guid AuthorId, bool trackChanges);
+
+        void DeleteAuthor(Guid AuthorId, bool trackChanges);
+
+        void UpdateAuthor(Guid AuthorId, AuthorDto author);
+        
     }
 }

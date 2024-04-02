@@ -35,14 +35,20 @@ namespace Company.Presentation.Controllers
             return Ok(createdAuthor);
         }
 
-        /* 
-        [HttpGet("{id:guid}", Name = "AuthorById")]
-
-       public IActionResult GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges)
+        [HttpGet("{AuthorId:guid}")]
+        public IActionResult GetAuthor(Guid AuthorId)
         {
-            var Article = _serviceManager.AuthorService.GetArticle(AuthorId, ArticleId, trackChanges: trackChanges);
-            return Ok(Article);
-        } */
+            var author = _serviceManager.AuthorService.GetAuthor(AuthorId, trackChanges: false);
+            return Ok(author);
+        }
+
+        [HttpDelete("{AuthorId:guid}")]
+        public IActionResult DeleteAuthor(Guid AuthorId, bool trackChanges) {
+            _serviceManager.AuthorService.DeleteAuthor(AuthorId, trackChanges: false);
+            return Ok();
+        }
+
+
     }
 
 }

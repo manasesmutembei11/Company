@@ -15,5 +15,7 @@ namespace Company.Core.Contracts.IService
 
         ArticleDto CreateArticle(ArticleForCreationDto article);
 
+        
+
     }
 }

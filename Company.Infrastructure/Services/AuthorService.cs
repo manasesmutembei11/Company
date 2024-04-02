@@ -59,6 +59,34 @@ namespace Company.Infrastructure.Services
 
 
         }
+
+        public AuthorDto GetAuthor(Guid AuthorId, bool trackChanges)
+        {
+            var author = _repositoryManager.Author.GetAuthor(AuthorId, trackChanges);
+            if (author is null)
+                throw new AuthorNotFoundException(AuthorId);
+            var authorDto = _mapper.Map<AuthorDto>(author);
+
+            return authorDto;
+        }
+
+        public void DeleteAuthor(Guid AuthorId, bool trackChanges) {
+           var author = _repositoryManager.Author.GetAuthor(AuthorId, trackChanges);
+            if(author is null)
+                throw new AuthorNotFoundException(AuthorId);
+            _repositoryManager.Author.DeleteAuthor(author);
+            _repositoryManager.Save();
+        }
+
+        public void UpdateAuthor(Guid AuthorId, AuthorDto author, bool trackChanges)
+        {
+            var author = _repositoryManager.Author.GetAuthor(AuthorId, trackChanges);
+            if( author is null)
+                throw new AuthorNotFoundException(AuthorId);
+
+        }
+
+
     }
 
 }
