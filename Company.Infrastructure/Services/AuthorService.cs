@@ -78,11 +78,13 @@ namespace Company.Infrastructure.Services
             _repositoryManager.Save();
         }
 
-        public void UpdateAuthor(Guid AuthorId, AuthorDto author, bool trackChanges)
+        public void UpdateAuthor(Guid AuthorId, AuthorForUpdateDto authorForUpdate, bool trackChanges)
         {
             var author = _repositoryManager.Author.GetAuthor(AuthorId, trackChanges);
             if( author is null)
                 throw new AuthorNotFoundException(AuthorId);
+            _mapper.Map(authorForUpdate, author);
+            _repositoryManager.Save();
 
         }
 

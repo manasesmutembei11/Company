@@ -19,7 +19,7 @@ namespace Company.Core.Contracts.IService
 
         void DeleteAuthor(Guid AuthorId, bool trackChanges);
 
-        void UpdateAuthor(Guid AuthorId, AuthorDto author);
+        void UpdateAuthor(Guid AuthorId, AuthorForUpdateDto authorForUpdate, bool trackChanges);
         
     }
 }

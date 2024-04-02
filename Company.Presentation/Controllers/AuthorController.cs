@@ -48,7 +48,16 @@ namespace Company.Presentation.Controllers
             return Ok();
         }
 
+        [HttpPut]
+        public IActionResult UpdateAuthor(Guid AuthorId, [FromBody] AuthorForUpdateDto authorForUpdate)
+        {
+            if (authorForUpdate is null)
+                return BadRequest("Author for update is null");
 
+            _serviceManager.AuthorService.UpdateAuthor(AuthorId, authorForUpdate, trackChanges: true);
+
+            return Ok();
+        }
     }
 
 }
