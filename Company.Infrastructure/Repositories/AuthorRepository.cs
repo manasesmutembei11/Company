@@ -15,6 +15,8 @@ namespace Company.Infrastructure.Repositories
         {
         }
 
+        public IEnumerable<Author> GetAuthors(bool trackChanges) => FindAll(trackChanges).OrderBy(c => c.FirstName).ToList();
+
         public IEnumerable<Article> AuthorArticles(Guid AuthorId, bool trackChanges) =>
          (IEnumerable<Article>)FindByCondition(e => e.AuthorId.Equals(AuthorId), trackChanges)
          .OrderBy(e => e.Email).ToList();

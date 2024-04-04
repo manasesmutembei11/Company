@@ -12,7 +12,7 @@ namespace Company.Core.Contracts
        IEnumerable<Article> AuthorArticles(Guid AuthorId, bool trackChanges);
 
         // Article GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges);
-
+        IEnumerable<Author> GetAuthors(bool trackChanges);
         void CreateAuthor(Author author);
 
         Author GetAuthor(Guid AuthorId, bool trackChanges);

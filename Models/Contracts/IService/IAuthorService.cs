@@ -13,6 +13,8 @@ namespace Company.Core.Contracts.IService
         IEnumerable<ArticleDto> AuthorArticles(Guid AuthorId, bool trackChanges);
 
         //  ArticleDto GetArticle(Guid AuthorId, Guid ArticleId, bool trackChanges);
+
+        IEnumerable<AuthorDto> GetAuthors(bool trackChanges);
         AuthorDto CreateAuthor(AuthorForCreationDto author);
 
         AuthorDto GetAuthor(Guid AuthorId, bool trackChanges);

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Company.Presentation.Controllers
 {
-    [Route("api/author")]
+    [Route("api/author/[action]")]
     [ApiController]
     public class AuthorController : ControllerBase
     {
@@ -17,6 +17,13 @@ namespace Company.Presentation.Controllers
         public AuthorController(IServiceManager service)
         {
             _serviceManager = service;
+        }
+
+        [HttpGet]
+        public IActionResult GetAuthors(bool trackChanges)
+        {
+            var authors = _serviceManager.AuthorService.GetAuthors(trackChanges);
+            return Ok(authors);
         }
 
         [HttpGet]

@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Company.Core.Models.Blog;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-
 namespace Company.Infrastructure.Configuration
 {
     public class ArticleConfiguration : IEntityTypeConfiguration<Article>

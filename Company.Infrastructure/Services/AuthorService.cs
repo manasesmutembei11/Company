@@ -60,6 +60,12 @@ namespace Company.Infrastructure.Services
 
         }
 
+        public IEnumerable<AuthorDto> GetAuthors(bool trackChanges) {
+            var authors = _repositoryManager.Author.GetAuthors(trackChanges);
+            var authorDto = _mapper.Map<IEnumerable<AuthorDto>>(authors);
+            return authorDto;
+        }
+
         public AuthorDto GetAuthor(Guid AuthorId, bool trackChanges)
         {
             var author = _repositoryManager.Author.GetAuthor(AuthorId, trackChanges);
