@@ -1,6 +1,8 @@
 ﻿using Company.Core.Contracts;
 using Company.Core.Models.Blog;
+using Company.Core.Models.RequestFeatures;
 using Company.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,16 @@ namespace Company.Infrastructure.Repositories
 {
     public class AuthorRepository : RepositoryBase<Author>, IAuthorRepository
     {
+        private readonly CompanyContext _context;
         public AuthorRepository(CompanyContext companyContext): base(companyContext)
         {
+            _context = companyContext;
+        }
+
+        public async Task<PagedList<Author>> GetPagedAuthors(PagingParameters pagingParameters)
+        {
+            var data = await _context.Authors.OrderBy(x=> x.FirstName).ThenBy(x => x.LastName).ToListAsync();
+            return PagedList<Author>.ToPagedList(data, pagingParameters.PageNumber, pagingParameters.PageNumber);
         }
 
         public IEnumerable<Author> GetAuthors(bool trackChanges) => FindAll(trackChanges).OrderBy(c => c.FirstName).ToList();

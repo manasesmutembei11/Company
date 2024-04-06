@@ -4,6 +4,7 @@ using Company.Core.Contracts.IService;
 using Company.Core.DTOs;
 using Company.Core.Exceptions;
 using Company.Core.Models.Blog;
+using Company.Core.Models.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -23,6 +24,17 @@ namespace Company.Infrastructure.Services
             _mapper = mapper;
         }
 
+        public async Task<PagedList<AuthorDto>> GetPagedAuthors(PagingParameters pagingParameters) {
+            var pagedList = await _repositoryManager.Author.GetPagedAuthors(pagingParameters);
+
+            return new PagedList<AuthorDto>(
+                pagedList.Data.Select(_mapper.Map<AuthorDto>).ToList(),
+                pagedList.MetaData.TotalCount,
+                pagedList.MetaData.CurrentPage,
+                pagingParameters.PageNumber
+           );
+
+        }
 
         public IEnumerable<ArticleDto> AuthorArticles(Guid AuthorId, bool trackChanges)
         {

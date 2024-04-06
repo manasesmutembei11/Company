@@ -1,5 +1,6 @@
 ﻿using Company.Core.Contracts.IService;
 using Company.Core.DTOs;
+using Company.Core.Models.RequestFeatures;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,15 @@ namespace Company.Presentation.Controllers
         {
             _serviceManager = service;
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetPagedAuthors( [FromQuery] PagingParameters pagingParameters) {
+
+            var item = Request.Query;
+            var pagedList = await _serviceManager.AuthorService.GetPagedAuthors(pagingParameters);
+            return Ok(pagedList);
+        }
+
 
         [HttpGet]
         public IActionResult GetAuthors(bool trackChanges)
